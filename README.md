@@ -1,5 +1,9 @@
 ## Instagram-SDK-PHP
 
+[![Latest Stable Version](https://poser.pugx.org/liamcottle/instagram-sdk-php/version)](https://packagist.org/packages/liamcottle/instagram-sdk-php)
+[![Latest Unstable Version](https://poser.pugx.org/liamcottle/instagram-sdk-php/v/unstable)](//packagist.org/packages/liamcottle/instagram-sdk-php)
+[![Total Downloads](https://poser.pugx.org/liamcottle/instagram-sdk-php/downloads)](https://packagist.org/packages/liamcottle/instagram-sdk-php)
+
 This is an unofficial SDK for the Instagram Private API in PHP
 
 ## Motivation
@@ -382,6 +386,28 @@ $instagram-> ...;
 ```
 
 ## Extras
+
+### Pagination
+
+Some Instagram endpoints return paginated data.
+
+To access the next page of data, you will need to get the next maximum ID from the response object and pass it into the same method as the `nextMaxId` parameter.
+
+**Example:**
+
+```php
+//Get TimelineFeed
+$timelineFeed = $instagram->getTimelineFeed();
+
+//This will be null if there are no more pages.
+$nextMaxId = $timelineFeed->getNextMaxId();
+
+//We have another page of Items
+if($nextMaxId != null){
+	//Get the next page.
+	$timelineFeed = $instagram->getTimelineFeed($nextMaxId);
+}
+```
 
 ### Proxy
 
