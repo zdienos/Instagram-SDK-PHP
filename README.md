@@ -417,6 +417,12 @@ Use a Proxy between your Server and the Instagram API
 $instagram->setProxy("127.0.0.1:8888");
 ```
 
+Optional Username/Password Authentication
+
+```php
+$instagram->setProxy("127.0.0.1:8888", "proxyUsername", "proxyPassword");
+```
+
 Enable or Disable Peer Verification, for testing with Charles Proxy etc.
 
 ```php
