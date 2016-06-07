@@ -24,6 +24,12 @@ abstract class Request {
     private $proxy;
 
     /**
+     * Proxy Credentials used for Requests
+     * @var string
+     */
+    private $proxyCredentials;
+
+    /**
      * Proxy used for Requests
      * @var string
      */
@@ -64,6 +70,14 @@ abstract class Request {
      */
     public function setProxy($proxy){
         $this->proxy = $proxy;
+    }
+
+    /**
+     * Set Proxy Credentials to be used for Requests
+     * @param $credentials string
+     */
+    public function setProxyCredentials($credentials){
+        $this->proxyCredentials = $credentials;
     }
 
     /**
@@ -166,7 +180,13 @@ abstract class Request {
         $curl->setOpt(CURLOPT_SSL_VERIFYPEER, $this->verifyPeer);
 
         if($this->proxy != null){
+
             $curl->setOpt(CURLOPT_PROXY, $this->proxy);
+
+            if($this->proxyCredentials != null){
+                $curl->setOpt(CURLOPT_PROXYUSERPWD, $this->proxyCredentials);
+            }
+
         }
 
         foreach($this->getHeaders() as $key => $value){

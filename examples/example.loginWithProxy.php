@@ -9,6 +9,9 @@ try {
     //Set the Proxy and Port
     $instagram->setProxy("127.0.0.1:8888");
 
+    //Your Proxy might need Username and Password
+    //$instagram->setProxy("127.0.0.1:8080", "username", "password");
+
     //Enable/Disable SSL Verification (Testing with Charles Proxy etc)
     $instagram->setVerifyPeer(false);
 

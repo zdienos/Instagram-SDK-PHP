@@ -121,10 +121,16 @@ class Instagram {
     private $googleAdId;
 
     /**
-     * HTTP Proxy to be used for Snapchat API Requests
+     * HTTP Proxy to be used for Instagram API Requests
      * @var string
      */
     private $proxy;
+
+    /**
+     * HTTP Proxy to be used for Instagram API Requests
+     * @var string
+     */
+    private $proxyCredentials;
 
     /**
      * Enable/Disable SSL Verification of Peer
@@ -348,10 +354,15 @@ class Instagram {
 
     /**
      * Set the HTTP Proxy to be used for Instagram API Requests
-     * @param $proxy string
+     * @param $proxy string Proxy
+     * @param string $username Proxy Username
+     * @param string $password Proxy Password
      */
-    public function setProxy($proxy){
+    public function setProxy($proxy, $username = null, $password = null){
         $this->proxy = $proxy;
+        if($username != null && $password != null){
+            $this->proxyCredentials = $username . ":" . $password;
+        }
     }
 
     /**
@@ -360,6 +371,14 @@ class Instagram {
      */
     public function getProxy(){
         return $this->proxy;
+    }
+
+    /**
+     * Get the HTTP Proxy Credentials to be used for Instagram API Requests
+     * @return string
+     */
+    public function getProxyCredentials(){
+        return $this->proxyCredentials;
     }
 
     /**

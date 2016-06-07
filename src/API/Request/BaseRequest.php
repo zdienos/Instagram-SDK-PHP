@@ -37,6 +37,7 @@ abstract class BaseRequest extends Request {
 
         $this->setInstagram($instagram);
         $this->setProxy($instagram->getProxy());
+        $this->setProxyCredentials($instagram->getProxyCredentials());
         $this->setVerifyPeer($instagram->shouldVerifyPeer());
 
     }
