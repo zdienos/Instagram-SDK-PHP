@@ -3,6 +3,7 @@
 [![Latest Stable Version](https://poser.pugx.org/liamcottle/instagram-sdk-php/version)](https://packagist.org/packages/liamcottle/instagram-sdk-php)
 [![Latest Unstable Version](https://poser.pugx.org/liamcottle/instagram-sdk-php/v/unstable)](//packagist.org/packages/liamcottle/instagram-sdk-php)
 [![Total Downloads](https://poser.pugx.org/liamcottle/instagram-sdk-php/downloads)](https://packagist.org/packages/liamcottle/instagram-sdk-php)
+[![Daily Downloads](https://poser.pugx.org/liamcottle/instagram-sdk-php/d/daily)](https://packagist.org/packages/liamcottle/instagram-sdk-php)
 
 This is an unofficial SDK for the Instagram Private API in PHP
 
