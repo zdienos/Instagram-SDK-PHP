@@ -39,7 +39,7 @@ class PhotoUploadRequest extends AuthenticatedBaseRequest {
     }
 
     public function getEndpoint(){
-        return sprintf("/v1/upload/photo/", $this->mediaId);
+        return "/v1/upload/photo/";
     }
 
     public function getResponseObject(){
