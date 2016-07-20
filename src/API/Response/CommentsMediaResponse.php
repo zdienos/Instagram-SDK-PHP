@@ -24,7 +24,7 @@ class CommentsMediaResponse extends BaseResponse {
 
     /**
      * Next Maximum Id
-     * @var int
+     * @var string
      */
     protected $next_max_id;
 
@@ -89,7 +89,7 @@ class CommentsMediaResponse extends BaseResponse {
     }
 
     /**
-     * @return int
+     * @return string
      */
     public function getNextMaxId()
     {
@@ -97,7 +97,7 @@ class CommentsMediaResponse extends BaseResponse {
     }
 
     /**
-     * @param int $next_max_id
+     * @param string $next_max_id
      */
     public function setNextMaxId($next_max_id)
     {
