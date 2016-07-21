@@ -146,6 +146,13 @@ class FeedItem extends Model {
     protected $has_audio;
 
     /**
+     * Ad Type
+     * @var int
+     */
+    protected $dr_ad_type;
+
+
+    /**
      * @return float
      */
     public function getTakenAt()
@@ -514,6 +521,22 @@ class FeedItem extends Model {
     }
 
     /**
+     * @return int
+     */
+    public function getDrAdType()
+    {
+        return $this->dr_ad_type;
+    }
+
+    /**
+     * @param int $dr_ad_type
+     */
+    public function setDrAdType($dr_ad_type)
+    {
+        $this->dr_ad_type = $dr_ad_type;
+    }
+
+    /**
      * Is Image
      * @return boolean
      */
@@ -527,6 +550,14 @@ class FeedItem extends Model {
      */
     public function isVideo(){
         return $this->getMediaType() == self::MEDIA_TYPE_VIDEO;
+    }
+
+    /**
+     * Is Ad
+     * @return boolean
+     */
+    public function isAd(){
+        return !is_null($this->getDrAdType());
     }
 
 }
