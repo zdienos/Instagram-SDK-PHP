@@ -60,7 +60,7 @@ class Comment extends Model {
 
     /**
      * Id
-     * @var int
+     * @var float
      */
     protected $pk;
 
@@ -209,15 +209,15 @@ class Comment extends Model {
     }
 
     /**
-     * @return int
+     * @return float
      */
     public function getPk()
     {
-        return $this->pk;
+        return number_format($this->pk, 0, '.', '');
     }
 
     /**
-     * @param int $pk
+     * @param float $pk
      */
     public function setPk($pk)
     {
