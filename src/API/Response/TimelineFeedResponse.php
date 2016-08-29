@@ -11,12 +11,6 @@ class TimelineFeedResponse extends BaseResponse {
     protected $num_results;
 
     /**
-     * Feed Items
-     * @var Model\FeedItem[]
-     */
-    protected $items;
-
-    /**
      * More items available
      * @var boolean
      */
@@ -27,6 +21,18 @@ class TimelineFeedResponse extends BaseResponse {
      * @var string
      */
     protected $next_max_id;
+
+    /**
+     * Number of New Stories
+     * @var int
+     */
+    protected $num_new_stories;
+
+    /**
+     * Feed Items
+     * @var Model\FeedItemContainer[]
+     */
+    protected $feed_items;
 
     /**
      * @return int
@@ -42,22 +48,6 @@ class TimelineFeedResponse extends BaseResponse {
     public function setNumResults($num_results)
     {
         $this->num_results = $num_results;
-    }
-
-    /**
-     * @return Model\FeedItem[]
-     */
-    public function getItems()
-    {
-        return $this->items;
-    }
-
-    /**
-     * @param Model\FeedItem[] $items
-     */
-    public function setItems($items)
-    {
-        $this->items = $items;
     }
 
     /**
@@ -90,6 +80,38 @@ class TimelineFeedResponse extends BaseResponse {
     public function setNextMaxId($next_max_id)
     {
         $this->next_max_id = $next_max_id;
+    }
+
+    /**
+     * @return int
+     */
+    public function getNumNewStories()
+    {
+        return $this->num_new_stories;
+    }
+
+    /**
+     * @param int $num_new_stories
+     */
+    public function setNumNewStories($num_new_stories)
+    {
+        $this->num_new_stories = $num_new_stories;
+    }
+
+    /**
+     * @return Model\FeedItemContainer[]
+     */
+    public function getFeedItems()
+    {
+        return $this->feed_items;
+    }
+
+    /**
+     * @param Model\FeedItemContainer[] $feed_items
+     */
+    public function setFeedItems($feed_items)
+    {
+        $this->feed_items = $feed_items;
     }
 
 }
