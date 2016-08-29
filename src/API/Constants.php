@@ -30,6 +30,12 @@ class Constants {
     const IG_CAPABILITIES = "3Q==";
 
     /*
+     * Installed Apps
+     * Value: { "1": 0, "2": 0 }
+     */
+    const IG_INSTALLED_APPS = "eyIxIjowLCIyIjowfQ==";
+
+    /*
      * Connection Type
      */
     const IG_CONNECTION_TYPE = "WIFI";
