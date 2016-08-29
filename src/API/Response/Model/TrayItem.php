@@ -59,6 +59,12 @@ class TrayItem extends Model {
     protected $seen_ranked_position;
 
     /**
+     * Is Nux
+     * @var int
+     */
+    protected $is_nux;
+
+    /**
      * @return boolean
      */
     public function isCanReply()
@@ -200,6 +206,22 @@ class TrayItem extends Model {
     public function setSeenRankedPosition($seen_ranked_position)
     {
         $this->seen_ranked_position = $seen_ranked_position;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isNux()
+    {
+        return $this->is_nux == 1;
+    }
+
+    /**
+     * @param int $is_nux
+     */
+    public function setIsNux($is_nux)
+    {
+        $this->is_nux = $is_nux;
     }
 
 }
