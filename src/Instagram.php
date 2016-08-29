@@ -32,6 +32,7 @@ use Instagram\API\Request\ReelsTrayFeedRequest;
 use Instagram\API\Request\RemoveProfilePictureAccountRequest;
 use Instagram\API\Request\SearchTagsRequest;
 use Instagram\API\Request\SearchUsersRequest;
+use Instagram\API\Request\SeenMediaRequest;
 use Instagram\API\Request\SetPrivateAccountRequest;
 use Instagram\API\Request\SetPublicAccountRequest;
 use Instagram\API\Request\ShowFriendshipRequest;
@@ -712,6 +713,41 @@ class Instagram {
 
         if(!$response->isOk()){
             throw new InstagramException(sprintf("Failed to unlikeMedia: [%s] %s", $response->getStatus(), $response->getMessage()));
+        }
+
+        return $response;
+
+    }
+
+    /**
+     *
+     * Seen Media
+     *
+     * @param string|API\Response\Model\FeedItem $mediaId FeedItem or FeedItem Id to mark Seen
+     * @param $timestampTakenAt int Timestamp the Media was Taken at in seconds (taken_at)
+     * @return API\Response\SeenMediaResponse
+     * @throws Exception
+     */
+    public function seenMedia($mediaId, $timestampTakenAt = null){
+
+        if(!$this->isLoggedIn()){
+            throw new InstagramException("You must be logged in to call seenMedia().");
+        }
+
+        if($mediaId instanceof FeedItem){
+            $timestampTakenAt = $mediaId->getTakenAt();
+            $mediaId = $mediaId->getId();
+        }
+
+        if(empty($timestampTakenAt)){
+            throw new InstagramException("TimestampTakenAt must be provided if calling seenMedia() with a MediaId");
+        }
+
+        $request = new SeenMediaRequest($this, $mediaId, $timestampTakenAt);
+        $response = $request->execute();
+
+        if(!$response->isOk()){
+            throw new InstagramException(sprintf("Failed to seenMedia: [%s] %s", $response->getStatus(), $response->getMessage()));
         }
 
         return $response;
