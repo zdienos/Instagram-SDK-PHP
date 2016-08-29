@@ -134,6 +134,30 @@ class FeedItem extends Model {
     protected $photo_of_you;
 
     /**
+     * Expiring At
+     * @var float
+     */
+    protected $expiring_at;
+
+    /**
+     * Is Reel Media
+     * @var boolean
+     */
+    protected $is_reel_media;
+
+    /**
+     * Viewers
+     * @var User[]
+     */
+    protected $viewers;
+
+    /**
+     * Viewer Count
+     * @var int
+     */
+    protected $viewer_count;
+
+    /**
      * Video Versions
      * @var VideoVersion[]
      */
@@ -558,6 +582,70 @@ class FeedItem extends Model {
      */
     public function isAd(){
         return !is_null($this->getDrAdType());
+    }
+
+    /**
+     * @return float
+     */
+    public function getExpiringAt()
+    {
+        return $this->expiring_at;
+    }
+
+    /**
+     * @param float $expiring_at
+     */
+    public function setExpiringAt($expiring_at)
+    {
+        $this->expiring_at = $expiring_at;
+    }
+
+    /**
+     * @return boolean
+     */
+    public function isIsReelMedia()
+    {
+        return $this->is_reel_media;
+    }
+
+    /**
+     * @param boolean $is_reel_media
+     */
+    public function setIsReelMedia($is_reel_media)
+    {
+        $this->is_reel_media = $is_reel_media;
+    }
+
+    /**
+     * @return User[]
+     */
+    public function getViewers()
+    {
+        return $this->viewers;
+    }
+
+    /**
+     * @param User[] $viewers
+     */
+    public function setViewers($viewers)
+    {
+        $this->viewers = $viewers;
+    }
+
+    /**
+     * @return int
+     */
+    public function getViewerCount()
+    {
+        return $this->viewer_count;
+    }
+
+    /**
+     * @param int $viewer_count
+     */
+    public function setViewerCount($viewer_count)
+    {
+        $this->viewer_count = $viewer_count;
     }
 
 }

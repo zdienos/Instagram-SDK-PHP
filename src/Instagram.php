@@ -28,6 +28,7 @@ use Instagram\API\Request\LoginRequest;
 use Instagram\API\Request\LogoutRequest;
 use Instagram\API\Request\PhotoUploadRequest;
 use Instagram\API\Request\PlacesFacebookSearchRequest;
+use Instagram\API\Request\ReelsTrayFeedRequest;
 use Instagram\API\Request\RemoveProfilePictureAccountRequest;
 use Instagram\API\Request\SearchTagsRequest;
 use Instagram\API\Request\SearchUsersRequest;
@@ -476,6 +477,30 @@ class Instagram {
 
         if(!$response->isOk()){
             throw new InstagramException(sprintf("Failed to getTimelineFeed: [%s] %s", $response->getStatus(), $response->getMessage()));
+        }
+
+        return $response;
+
+    }
+
+    /**
+     *
+     * Fetch Reels Tray (Stories)
+     *
+     * @return API\Response\ReelsTrayFeedResponse
+     * @throws Exception
+     */
+    public function getReelsTrayFeed(){
+
+        if(!$this->isLoggedIn()){
+            throw new InstagramException("You must be logged in to call getReelsTrayFeed().");
+        }
+
+        $request = new ReelsTrayFeedRequest($this);
+        $response = $request->execute();
+
+        if(!$response->isOk()){
+            throw new InstagramException(sprintf("Failed to getReelsTrayFeed: [%s] %s", $response->getStatus(), $response->getMessage()));
         }
 
         return $response;
