@@ -3,7 +3,6 @@
 namespace Instagram;
 
 use Exception;
-use Instagram\API\Constants;
 use Instagram\API\Framework\InstagramException;
 use Instagram\API\Request\BlockFriendshipRequest;
 use Instagram\API\Request\BulkDeleteCommentsMediaRequest;
@@ -47,6 +46,9 @@ use Instagram\API\Response\Model\User;
 use Ramsey\Uuid\Uuid;
 
 class Instagram {
+
+    const CONFIG_TIMEZONE = "timezone";
+    const CONFIG_TIMEZONE_OFFSET = "timezone_offset";
 
     /**
      *
@@ -138,10 +140,36 @@ class Instagram {
      */
     private $verifyPeer = true;
 
-    public function __construct(){
+    /**
+     * Configuration
+     * @var array
+     */
+    public $config;
+
+    /**
+     * @param array $config Configuration
+     */
+    public function __construct(array $config = []){
+
+        $this->setConfig($config);
 
         //Set your Timezone
-        date_default_timezone_set(Constants::TIMEZONE);
+        date_default_timezone_set($this->config[self::CONFIG_TIMEZONE]);
+
+    }
+
+    /**
+     * Configures the default options
+     * @param array $config
+     */
+    private function setConfig(array $config){
+
+        $defaults = [
+            self::CONFIG_TIMEZONE => "Pacific/Auckland",
+            self::CONFIG_TIMEZONE_OFFSET => "43200"
+        ];
+
+        $this->config = array_merge($defaults, $config);
 
     }
 

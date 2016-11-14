@@ -44,14 +44,4 @@ class Constants {
      */
     const ACCEPT_ENCODING = "gzip, deflate, sdch";
 
-    /*
-     * Your Timezone
-     */
-    const TIMEZONE = "Pacific/Auckland";
-
-    /*
-     * Your Timezone Offset
-     */
-    const TIMEZONE_OFFSET = 43200;
-
 }
