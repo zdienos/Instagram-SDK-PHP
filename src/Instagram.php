@@ -28,6 +28,7 @@ use Instagram\API\Request\LoginRequest;
 use Instagram\API\Request\LogoutRequest;
 use Instagram\API\Request\PhotoUploadRequest;
 use Instagram\API\Request\PlacesFacebookSearchRequest;
+use Instagram\API\Request\ReelMediaUserFeedRequest;
 use Instagram\API\Request\ReelsTrayFeedRequest;
 use Instagram\API\Request\RemoveProfilePictureAccountRequest;
 use Instagram\API\Request\SearchTagsRequest;
@@ -548,6 +549,34 @@ class Instagram {
      */
     public function getMyUserFeed($maxId = null){
         return $this->getUserFeed($this->getLoggedInUser()->getPk(), $maxId);
+    }
+
+    /**
+     *
+     * Fetch User Reel Media (Stories)
+     * @param string|API\Response\Model\User $userId User or User Id to get Reel Media Feed of
+     * @return API\Response\ReelMediaUserFeedResponse
+     * @throws Exception
+     */
+    public function getReelMediaUserFeed($userId){
+
+        if(!$this->isLoggedIn()){
+            throw new InstagramException("You must be logged in to call getReelMediaUserFeed().");
+        }
+
+        if($userId instanceof User){
+            $userId = $userId->getPk();
+        }
+
+        $request = new ReelMediaUserFeedRequest($this, $userId);
+        $response = $request->execute();
+
+        if(!$response->isOk()){
+            throw new InstagramException(sprintf("Failed to getReelMediaUserFeed: [%s] %s", $response->getStatus(), $response->getMessage()));
+        }
+
+        return $response;
+
     }
 
     /**
