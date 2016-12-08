@@ -199,7 +199,7 @@ abstract class Request {
                 $curl->setCookie($key, $value);
             }
 
-            $error_format = "Instagram Request failed: [%s] [%s] %s";
+            $error_format = "Instagram Request failed: [%s] [%s] %s (Code %s)";
 
             switch($this->getMethod()){
 
@@ -208,7 +208,7 @@ abstract class Request {
                     $data = $curl->get($this->getUrl(), $this->getParams());
 
                     if($curl->curlError){
-                        throw new InstagramException(sprintf($error_format, "GET", $this->getUrl(), $curl->errorMessage));
+                        throw new InstagramException(sprintf($error_format, "GET", $this->getUrl(), $curl->errorMessage, $curl->errorCode));
                     }
 
                     break;
@@ -220,7 +220,7 @@ abstract class Request {
                     $data = $curl->post($this->getUrl(), $this->getParams());
 
                     if($curl->curlError){
-                        throw new InstagramException(sprintf($error_format, "POST", $this->getUrl(), $curl->errorMessage));
+                        throw new InstagramException(sprintf($error_format, "POST", $this->getUrl(), $curl->errorMessage, $curl->errorCode));
                     }
 
                     break;
@@ -228,7 +228,7 @@ abstract class Request {
                 }
 
                 default: {
-                    throw new InstagramException(sprintf($error_format, "UNKNOWN", $this->getUrl(), "Unsupported Request Method"));
+                    throw new InstagramException(sprintf($error_format, "UNKNOWN", $this->getUrl(), "Unsupported Request Method", "0"));
                 }
 
             }
